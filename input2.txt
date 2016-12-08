@@ -1,0 +1,10 @@
+num_of_class:0
+num_of_class_association:0
+end
+numberoflecturer:1
+time_slots
+day1
+8:30 12:30
+endslot
+end
+numberofroom:0
