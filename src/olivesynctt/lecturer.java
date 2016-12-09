@@ -19,8 +19,8 @@ public class lecturer
         String Office_address;
         public static class slots 
         {
-            Date start_time;
-            Date end_time;
+            String start_time;
+            String end_time;
             slots next;
         }
         slots[] head;
@@ -29,8 +29,19 @@ public class lecturer
         public lecturer()
         {
             availability = new int[OliveSyncTT.days_in_week][OliveSyncTT.hour_in_class];
-            //head = null;
+            head = null;
             //head = new slots();
+        }
+        
+        public void add_slot(slots a, int b )
+        {
+            slots d  = head[b];
+            while(d != null)
+            {
+                d = d.next;
+            }
+            d = new slots();
+            d = a;
         }
         
         public void set_name_of_lecturer(String h)
@@ -82,4 +93,10 @@ public class lecturer
        {
            return availability;
        }
+       
+       public void set_availability(slots a)
+       {
+           
+       }
+       
 }

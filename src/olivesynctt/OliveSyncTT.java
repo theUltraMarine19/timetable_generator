@@ -286,20 +286,13 @@ public class OliveSyncTT {
                                 while(!lines.get(i).equals("endslot"))
                                 {
                                    String s = lines.get(i);
-                                   String g[] = s.split(" "); 
-                                   SimpleDateFormat tf = new java.text.SimpleDateFormat("hh:mm aa");
-                                    try 
-                                    {
-                                        sir1.head[0].start_time = tf.parse(g[0]);
-                                        System.out.println(sir1.head[0].start_time);
-                                        
-                                    } 
-                                    catch (ParseException ex) 
-                                    {
-                                        Logger.getLogger(OliveSyncTT.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
+                                   String g[] = s.split(" ");
+                                   lecturer.slots slot = new lecturer.slots();
+                                   slot.start_time = g[0];
+                                   slot.end_time = g[1];
+                                   slot.next = null;
+                                   sir1.add_slot(slot, 0);
                                     i++;
-                                   
                                 }
                             }
                             else if (f[0].equals("day2"))
@@ -309,18 +302,13 @@ public class OliveSyncTT {
                                 while(!lines.get(i).equals("endslot"))
                                 {
                                    String s = lines.get(i);
-                                   String g[] = s.split(" "); 
-                                   SimpleDateFormat tf = new java.text.SimpleDateFormat("hh:mm aa");
-                                   try 
-                                    {
-                                        sir1.head[0].start_time = tf.parse(g[0]);
-                                        System.out.println(sir1.head[0].start_time);
-                                        i++;
-                                    } 
-                                    catch (ParseException ex) 
-                                    {
-                                        Logger.getLogger(OliveSyncTT.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
+                                   String g[] = s.split(" ");
+                                   lecturer.slots slot = new lecturer.slots();
+                                   slot.start_time = g[0];
+                                   slot.end_time = g[1];
+                                   slot.next = null;
+                                   sir1.add_slot(slot, 1);
+                                    i++;
                                 }
                             }
                             else if (f[0].equals("day3"))
@@ -330,18 +318,13 @@ public class OliveSyncTT {
                                 while(!lines.get(i).equals("endslot"))
                                 {
                                    String s = lines.get(i);
-                                   String g[] = s.split(" "); 
-                                   SimpleDateFormat tf = new java.text.SimpleDateFormat("hh:mm aa");
-                                   try 
-                                    {
-                                        sir1.head[0].start_time = tf.parse(g[0]);
-                                        System.out.println(sir1.head[0].start_time);
-                                        i++;
-                                    } 
-                                    catch (ParseException ex) 
-                                    {
-                                        Logger.getLogger(OliveSyncTT.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
+                                   String g[] = s.split(" ");
+                                   lecturer.slots slot = new lecturer.slots();
+                                   slot.start_time = g[0];
+                                   slot.end_time = g[1];
+                                   slot.next = null;
+                                   sir1.add_slot(slot, 2);
+                                    i++;
                                 }
                             }
                             else if (f[0].equals("day4"))
@@ -351,18 +334,13 @@ public class OliveSyncTT {
                                 while(!lines.get(i).equals("endslot"))
                                 {
                                    String s = lines.get(i);
-                                   String g[] = s.split(" "); 
-                                   SimpleDateFormat tf = new java.text.SimpleDateFormat("hh:mm aa");
-                                   try 
-                                    {
-                                        sir1.head[0].start_time = tf.parse(g[0]);
-                                        System.out.println(sir1.head[0].start_time);
-                                        i++;
-                                    } 
-                                    catch (ParseException ex) 
-                                    {
-                                        Logger.getLogger(OliveSyncTT.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
+                                   String g[] = s.split(" ");
+                                   lecturer.slots slot = new lecturer.slots();
+                                   slot.start_time = g[0];
+                                   slot.end_time = g[1];
+                                   slot.next = null;
+                                   sir1.add_slot(slot, 3);
+                                    i++;
                                 }
                             }
                             else if (f[0].equals("day5"))
@@ -372,18 +350,13 @@ public class OliveSyncTT {
                                 while(!lines.get(i).equals("endslot"))
                                 {
                                    String s = lines.get(i);
-                                   String g[] = s.split(" "); 
-                                   SimpleDateFormat tf = new java.text.SimpleDateFormat("hh:mm aa");
-                                   try 
-                                    {
-                                        sir1.head[0].start_time = tf.parse(g[0]);
-                                        System.out.println(sir1.head[0].start_time);
-                                        i++;
-                                    } 
-                                    catch (ParseException ex) 
-                                    {
-                                        Logger.getLogger(OliveSyncTT.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
+                                   String g[] = s.split(" ");
+                                   lecturer.slots slot = new lecturer.slots();
+                                   slot.start_time = g[0];
+                                   slot.end_time = g[1];
+                                   slot.next = null;
+                                   sir1.add_slot(slot, 4);
+                                    i++;
                                 }
                             }
                             i++;
@@ -1137,8 +1110,47 @@ public class OliveSyncTT {
     {
         
     }
+    
+    public static boolean compare_slot(String a, String b, String c, String d)
     {
-        
+        if (Integer.parseInt(a.split(":")[0]) < Integer.parseInt(c.split(":")[0]) )
+        {
+            if (Integer.parseInt(b.split(":")[0]) > Integer.parseInt(d.split(":")[0]) )
+            {
+                return true;
+            }
+            else if (Integer.parseInt(b.split(":")[0]) == Integer.parseInt(d.split(":")[0]) )
+            {
+                if (Integer.parseInt(b.split(":")[1]) > Integer.parseInt(d.split(":")[1]) ) 
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        else if (Integer.parseInt(a.split(":")[0]) == Integer.parseInt(c.split(":")[0]) )
+        {
+            if ( Integer.parseInt(a.split(":")[1]) < Integer.parseInt(c.split(":")[1]) )
+            {
+                if (Integer.parseInt(b.split(":")[0]) > Integer.parseInt(d.split(":")[0]) )
+                {
+                    return true;
+                }
+                else if (Integer.parseInt(b.split(":")[0]) == Integer.parseInt(d.split(":")[0]) )
+                {
+                    if (Integer.parseInt(b.split(":")[1]) > Integer.parseInt(d.split(":")[1]) ) 
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            else 
+            {
+                return false;
+            }
+        }
+        else return false;
     }
     
     public static void upload_data(Colony colony)
@@ -1224,40 +1236,47 @@ public class OliveSyncTT {
         int generations = 0;
         int num_of_generations = 0;
         long maximum_allowed_cost = 0;
-        String j = "input2.txt";
+        String j = "input1.txt";
         
         Random random = new Random();
         CollectionOfClass collectionOfClass = new CollectionOfClass();
         CollectionOfLecturers collectionOfLecturers = new CollectionOfLecturers();
         CollectionOfRoom collectionOfRoom = new CollectionOfRoom();
         Colony solution_colony = new Colony();
-//        initialise_constraints(j, collectionOfClass, collectionOfLecturers, collectionOfRoom);
-//        System.out.println("finished reading of input from text file");
-//        int population_size = max_population_size;
-//        initialise_colony(solution_colony, collectionOfClass, random, collectionOfLecturers, collectionOfRoom);
-//        find_average_cost(solution_colony);
-//        while (solution_colony.first_time_table.cost > maximum_allowed_cost)
-//        {
-//            kill_costly_colony_members(solution_colony);
-//            find_average_cost(solution_colony);
-//            
-//            while (solution_colony.population_size < max_population_size)
-//            {                
-//                num_of_trails++;
-//                breed_colony(solution_colony, collectionOfClass, collectionOfLecturers, collectionOfRoom);
-//            }
-//            num_of_generations++;
-//            System.out.println(" average cost of colony is  " + solution_colony.avg_cost);
-//            System.out.println(" number of trails is  " + num_of_trails);
-//            System.out.println(" cost of first time-table of colony is  " + solution_colony.first_time_table.cost);
-//            num_of_trails = 0;
-//        }
-//        
-//        System.out.println( "generations is " + num_of_generations);
-//        output(solution_colony);
-//        upload_data(solution_colony);
+        initialise_constraints(j, collectionOfClass, collectionOfLecturers, collectionOfRoom);
+        System.out.println("finished reading of input from text file");
+        int population_size = max_population_size;
+        initialise_colony(solution_colony, collectionOfClass, random, collectionOfLecturers, collectionOfRoom);
+        find_average_cost(solution_colony);
+        while (solution_colony.first_time_table.cost > maximum_allowed_cost)
+        {
+            kill_costly_colony_members(solution_colony);
+            find_average_cost(solution_colony);
+            
+            while (solution_colony.population_size < max_population_size)
+            {                
+                num_of_trails++;
+                breed_colony(solution_colony, collectionOfClass, collectionOfLecturers, collectionOfRoom);
+            }
+            num_of_generations++;
+            System.out.println(" average cost of colony is  " + solution_colony.avg_cost);
+            System.out.println(" number of trails is  " + num_of_trails);
+            System.out.println(" cost of first time-table of colony is  " + solution_colony.first_time_table.cost);
+            num_of_trails = 0;
+        }
+        
+        System.out.println( "generations is " + num_of_generations);
+        output(solution_colony);
+        upload_data(solution_colony);
         GetDay day = new GetDay();
-        System.out.println(day.currentDay("14/12/1997"));
+        System.out.println(day.currentDay("14/11/1997"));
+          String slot = "8:30 9:30";
+          String ds[] = slot.split(" ");
+          System.out.println(ds[0].split(":")[0]+ "   " + ds[0].split(":")[1] + "    " + ds[1].split(":")[0] + "     " + ds[1].split(":")[1] );
+          if (compare_slot("8:30", "10:30","9:01", "10:01"))
+          {
+              System.out.println("hello world");
+          }
     }
 
     
